@@ -69,7 +69,7 @@
     ]
   },
   {
-    "tutorial": "Cowboys can also be equipped with shotguns, super efficient to clear a crowdy place but not as accurate as your gun.",
+    "tutorial": "Cowboys can also be equipped with shotguns, super efficient to clear a crowdy place but not as accurate as your colt.",
     "characters": {
       "cops_with_gun": 3,
       "cops_with_shotgun": 2,
@@ -186,6 +186,26 @@
       "Small",
       "Hostel",
       "Hostel"
+    ]
+  },
+  {
+    "tutorial": "Street can be long... super long...",
+    "characters": {
+      "cops_with_gun": 12,
+      "cops_with_shotgun": 7,
+      "swats": 4,
+      "citizens": 23,
+      "replicants": 12
+    },
+    "buildings": [
+      "Small",
+      "Hostel",
+      "Hostel",
+      "Small",
+      "Medium",
+      "Hostel",
+      "Hostel",
+      "Medium"
     ]
   },
   {

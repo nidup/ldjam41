@@ -3,7 +3,7 @@ import {Config} from "../../Config";
 
 export default class Preload extends Phaser.State
 {
-    private skipMenu = true;
+    private skipMenu = false;
     private skipToLevel = 1;
 
     public preload ()
@@ -55,8 +55,8 @@ export default class Preload extends Phaser.State
         this.load.spritesheet('Bullet', 'assets/sprites/bullets.png', 10, 10);
         this.load.spritesheet('Marker', 'assets/sprites/markers.png', 20, 20);
         this.load.spritesheet('Gun', 'assets/sprites/gun.png', 20, 20);
-        this.load.spritesheet('ShotGun', 'assets/sprites/shotgun.png', 20, 20);
-        this.load.spritesheet('MachineGun', 'assets/sprites/machinegun.png', 20, 20);
+        this.load.spritesheet('ShotGun', 'assets/sprites/shotgun.png', 30, 20);
+        this.load.spritesheet('MachineGun', 'assets/sprites/machinegun.png', 30, 20);
         this.load.spritesheet('Money', 'assets/sprites/money.png', 20, 20);
         this.load.spritesheet('Menu', 'assets/sprites/menu.png', 800, 600);
         this.load.spritesheet('Street', 'assets/sprites/street.png', 80, 110);

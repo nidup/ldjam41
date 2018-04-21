@@ -23,7 +23,7 @@ export class FlashMessages
     {
         const messages = [];
         if (raisedEvent instanceof CopKilled) {
-            callbackContext.buildCopKillerMessage(messages);
+            //callbackContext.buildCopKillerMessage(messages);
             callbackContext.buildCarnageMessage(messages);
         }
 

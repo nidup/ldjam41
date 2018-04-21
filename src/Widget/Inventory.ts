@@ -52,7 +52,7 @@ export class Inventory extends Phaser.Sprite
         this.gunText.fixedToCamera = true;
         this.gunText.align = 'right';
 
-        const shotgunX = gunX;
+        const shotgunX = gunX - 16;
         const shotgunY = gunY + 70;
         this.shotgunSprite = group.game.add.sprite(shotgunX, shotgunY, 'ShotGun', 1, group);
         this.shotgunSprite.scale.setTo(Config.pixelScaleRatio(), Config.pixelScaleRatio());

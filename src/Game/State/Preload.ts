@@ -3,7 +3,7 @@ import {Config} from "../../Config";
 
 export default class Preload extends Phaser.State
 {
-    private skipMenu = false;
+    private skipMenu = true;
     private skipToLevel = 1;
 
     public preload ()
@@ -60,6 +60,7 @@ export default class Preload extends Phaser.State
         this.load.spritesheet('Money', 'assets/sprites/money.png', 20, 20);
         this.load.spritesheet('Menu', 'assets/sprites/menu.png', 800, 600);
         this.load.spritesheet('Street', 'assets/sprites/street.png', 80, 110);
+        this.load.spritesheet('BuildingHostel', 'assets/sprites/building-hostel.png', 180, 240);
         this.load.spritesheet('BuildingElectricSheep', 'assets/sprites/building-electric-sheep.png', 180, 240);
         this.load.spritesheet('BuildingBig', 'assets/sprites/building-big.png', 240, 240);
         this.load.spritesheet('BuildingMedium', 'assets/sprites/building-medium.png', 180, 240);

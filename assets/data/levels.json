@@ -9,10 +9,11 @@
       "replicants": 3
     },
     "buildings": [
+      "Small",
       "Medium",
-      "ElectricSheep",
-      "Big",
-      "Pub",
+      "Hostel",
+      "Small",
+      "Medium",
       "Small"
     ]
   },
@@ -26,11 +27,11 @@
       "replicants": 4
     },
     "buildings": [
-      "Big",
+      "Hostel",
       "Medium",
-      "Pub",
       "Small",
-      "ElectricSheep"
+      "Small",
+      "Hostel"
     ]
   },
   {
@@ -43,11 +44,11 @@
       "replicants": 4
     },
     "buildings": [
-      "Big",
+      "Hostel",
       "Medium",
-      "Pub",
       "Small",
-      "ElectricSheep"
+      "Small",
+      "Hostel"
     ]
   },
   {
@@ -61,10 +62,10 @@
     },
     "buildings": [
       "Small",
-      "ElectricSheep",
+      "Hostel",
       "Medium",
-      "Pub",
-      "Big"
+      "Small",
+      "Hostel"
     ]
   },
   {
@@ -78,10 +79,10 @@
     },
     "buildings": [
       "Small",
-      "Hospital",
+      "Hostel",
       "Medium",
-      "Pub",
-      "Big"
+      "Small",
+      "Hostel"
     ]
   },
   {
@@ -94,11 +95,11 @@
       "replicants": 6
     },
     "buildings": [
-      "Pub",
-      "Big",
+      "Small",
+      "Hostel",
       "Medium",
       "Small",
-      "Hospital"
+      "Hostel"
     ]
   },
   {
@@ -112,10 +113,10 @@
     },
     "buildings": [
       "Medium",
-      "Big",
+      "Hostel",
       "Small",
-      "Hospital",
-      "Pub"
+      "Hostel",
+      "Small"
     ]
   },
   {
@@ -129,10 +130,10 @@
     },
     "buildings": [
       "Small",
-      "ElectricSheep",
-      "Pub",
-      "Hospital",
-      "Big"
+      "Hostel",
+      "Small",
+      "Hostel",
+      "Hostel"
     ]
   },
   {
@@ -145,11 +146,11 @@
       "replicants": 6
     },
     "buildings": [
-      "Pub",
-      "Big",
+      "Small",
+      "Hostel",
       "Medium",
       "Small",
-      "Hospital"
+      "Hostel"
     ]
   },
   {
@@ -162,10 +163,10 @@
       "replicants": 8
     },
     "buildings": [
-      "Big",
-      "Pub",
-      "ElectricSheep",
-      "Hospital",
+      "Hostel",
+      "Small",
+      "Hostel",
+      "Hostel",
       "Small",
       "Medium"
     ]
@@ -180,11 +181,11 @@
       "replicants": 9
     },
     "buildings": [
-      "ElectricSheep",
-      "Pub",
+      "Hostel",
+      "Small",
       "Medium",
       "Small",
-      "Big"
+      "Hostel"
     ]
   },
   {
@@ -197,11 +198,11 @@
       "replicants": 1
     },
     "buildings": [
-      "ElectricSheep",
-      "Pub",
+      "Hostel",
       "Small",
-      "Big",
-      "Hospital"
+      "Small",
+      "Hostel",
+      "Hostel"
     ]
   },
   {
@@ -214,13 +215,13 @@
       "replicants": 12
     },
     "buildings": [
-      "Pub",
-      "Hospital",
-      "Big",
+      "Small",
+      "Hostel",
+      "Hostel",
       "Small",
       "Medium",
-      "ElectricSheep",
-      "Big",
+      "Hostel",
+      "Hostel",
       "Medium"
     ]
   }

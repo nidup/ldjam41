@@ -10,6 +10,7 @@ import {
 export class Inventory extends Phaser.Sprite
 {
     private player: Hero;
+    private statusText: Phaser.BitmapText;
     private gunText: Phaser.BitmapText;
     private gunSprite: Phaser.Sprite;
     private shotgunText: Phaser.BitmapText;
@@ -29,10 +30,11 @@ export class Inventory extends Phaser.Sprite
         this.scale.setTo(Config.pixelScaleRatio(), Config.pixelScaleRatio());
         this.fixedToCamera = true;
 
-        this.animations.add('idle', [0, 1, 2, 3], 4, true);
-        this.animations.add('warning', [4, 5, 6, 7], 4, true);
-        this.animations.add('dead', [8, 9, 10, 11], 4, true);
-        this.animations.play('idle');
+        const statusX = this.x + 435;
+        const statusY = 60;
+        this.statusText = this.game.add.bitmapText(statusX, statusY, 'cowboy','0', 17, group);
+        this.statusText.fixedToCamera = true;
+        this.statusText.align = 'right';
 
         const fontSize = 13;
         const marginLeftAmountToImage = 80;
@@ -76,7 +78,7 @@ export class Inventory extends Phaser.Sprite
 
         const moneyX = machinegunX;
         const moneyY = machinegunY + 70;
-        this.moneySprite = group.game.add.sprite(moneyX, moneyY, 'Money', 1, group);
+        this.moneySprite = group.game.add.sprite(moneyX, moneyY, 'Money', 0, group);
         this.moneySprite.scale.setTo(Config.pixelScaleRatio(), Config.pixelScaleRatio());
         this.moneySprite.fixedToCamera = true;
         this.moneyText = this.game.add.bitmapText(moneyX - marginLeftAmountToImage, moneyY + marginTopAmountToImage, 'carrier-command','0', fontSize, group);
@@ -89,13 +91,13 @@ export class Inventory extends Phaser.Sprite
     public update()
     {
         if (this.player.isDead()) {
-            this.animations.play('dead');
+            this.statusText.setText('  Dead');
             this.cameraFX.dyingEffect();
         } else if (this.player.isAggressive()) {
-            this.animations.play('warning');
+            this.statusText.setText('Wanted');
             this.cameraFX.warningEffect();
         } else {
-            this.animations.play('idle');
+            this.statusText.setText(' Alive');
         }
 
         if (this.player.isEquipedWithGun()) {

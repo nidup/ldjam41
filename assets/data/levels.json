@@ -1,6 +1,6 @@
 [
   {
-    "tutorial": "Androids are hidden in the population, no way to recognize human and android. You have no choice, you need to kill'em all.",
+    "tutorial": "Aliens are hidden in the population, no way to recognize infected citizens. You have no choice... kill'em all.",
     "characters": {
       "cops_with_gun": 1,
       "cops_with_shotgun": 1,
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "tutorial": "Cops can be android too. They have guns and can shoot you. Once killed, you can pick-up extra amno.",
+    "tutorial": "Take care to armed cowboys, they'll don't hesitate to shoot at you. Once killed, you can pick-up extra amno.",
     "characters": {
       "cops_with_gun": 1,
       "cops_with_shotgun": 0,
@@ -52,7 +52,7 @@
     ]
   },
   {
-    "tutorial": "When seing you're agressive, a cop shoots at you. He may hurts citizen or other cops helping you to clear the stage.",
+    "tutorial": "When seing you're agressive, an armed cowboy will shoot at you. He may hurts other citizens helping you to clear the street.",
     "characters": {
       "cops_with_gun": 6,
       "cops_with_shotgun": 0,
@@ -69,24 +69,7 @@
     ]
   },
   {
-    "tutorial": "When you get shoot, you can get nursed in an hospital, it costs 200 cdts. If there is no hospital in the street, you'll die.",
-    "characters": {
-      "cops_with_gun": 6,
-      "cops_with_shotgun": 0,
-      "swats": 0,
-      "citizens": 12,
-      "replicants": 8
-    },
-    "buildings": [
-      "Small",
-      "Hostel",
-      "Medium",
-      "Small",
-      "Hostel"
-    ]
-  },
-  {
-    "tutorial": "Cops can be equipped with shotgun and bullet proof jacket that make them more resistant. Use the relevant weapon.",
+    "tutorial": "Cowboys can also be equipped with shotguns, super efficient to clear a crowdy place but not as accurate as your gun.",
     "characters": {
       "cops_with_gun": 3,
       "cops_with_shotgun": 2,
@@ -103,7 +86,7 @@
     ]
   },
   {
-    "tutorial": "Shotgun is efficient to clean crowdy place, however it's not accurate and the range is shorter than gun.",
+    "tutorial": "Shotgun is effic.",
     "characters": {
       "cops_with_gun": 2,
       "cops_with_shotgun": 4,
@@ -137,7 +120,7 @@
     ]
   },
   {
-    "tutorial": "SWAT units are patrolling. They're super resistant with their armor and they're equipped with automatic rifle.",
+    "tutorial": "Some soldier are patrolling in the town, they're super resistant and equipped with machine guns.",
     "characters": {
       "cops_with_gun": 2,
       "cops_with_shotgun": 0,
@@ -189,7 +172,7 @@
     ]
   },
   {
-    "tutorial": "Sometimes, it's a lot of work for very few androids...",
+    "tutorial": "Sometimes, it's a lot of work for very few aliens...",
     "characters": {
       "cops_with_gun": 7,
       "cops_with_shotgun": 4,

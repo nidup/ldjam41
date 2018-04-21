@@ -2,9 +2,9 @@
   {
     "tutorial": "Androids are hidden in the population, no way to recognize human and android. You have no choice, you need to kill'em all.",
     "characters": {
-      "cops_with_gun": 0,
-      "cops_with_shotgun": 0,
-      "swats": 0,
+      "cops_with_gun": 1,
+      "cops_with_shotgun": 1,
+      "swats": 1,
       "citizens": 6,
       "replicants": 3
     },

@@ -23,6 +23,7 @@ export default class Menu extends Phaser.State {
         this.isMobile = detector.isMobile();
 
         const smallFontSize = 10;
+        const mediumFontSize = 20;
         const largeFontSize = 34;
         this.game.stage.backgroundColor = '#1b1128';
 
@@ -33,28 +34,28 @@ export default class Menu extends Phaser.State {
         if (this.isMobile) {
             titleX += Config.mobileExtraSidePadding();
         }
-        const titleY = 213;
-        this.game.add.bitmapText(titleX, titleY, 'carrier-command','Bold Runner', largeFontSize);
+        const titleY = 113;
+        this.game.add.bitmapText(titleX, titleY, 'cowboy','Cowboys vs Aliens', largeFontSize);
 
-        const storyX = titleX;
+        const storyX = titleX - 100;
         const storyY = titleY + 100;
-        const storyText = "You're Rick and you're missioned to destroy androids which\n\n"
-            +"escape from Rosen industries during their transfer to Mars.\n\n\n"
-            +"Your employer wants to keep this mission secret, you have \n\n"
-            +"no support and there is no way to recognize androids and\n\n"
-            +"citizens.";
-        this.game.add.bitmapText(storyX, storyY, 'carrier-command',storyText, smallFontSize);
+        const storyText = "Hey Rick,\n\n"
+            +"Aliens are infesting citizens in our town, you\n"
+            +"can't distinguish who is sane or contaminated.\n"
+            +"You have only one option... kill them all to stop\n"
+            +"this plague.\n";
+        this.game.add.bitmapText(storyX, storyY, 'cowboy',storyText, mediumFontSize);
 
         const controlsChoiceX = storyX;
-        const controlsChoiceY = storyY + 150;
+        const controlsChoiceY = storyY + 250;
         if (this.isMobile) {
             this.setupForMobile(controlsChoiceX, controlsChoiceY, smallFontSize);
         } else {
             this.setupForComputer(controlsChoiceX, controlsChoiceY, smallFontSize);
         }
 
-        const startX = storyX;
-        const startY = storyY + 270;
+        const startX = storyX + 400;
+        const startY = storyY + 250;
         this.startText = this.game.add.bitmapText(startX, startY, 'carrier-command','', smallFontSize);
         this.startText.alpha = 1;
         const tweenAlpha = this.game.add.tween(this.startText).to( { alpha: 0.3 }, 0, "Linear", true);

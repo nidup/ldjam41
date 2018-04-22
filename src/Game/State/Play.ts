@@ -217,7 +217,15 @@ export default class Play extends Phaser.State
                 }, this);
             } else {
                 this.game.time.events.add(Phaser.Timer.SECOND * 4, function () {
-                    this.game.state.start('Play', true, false, this.controllerType, this.levelNumber);
+                    this.game.state.start(
+                        'Play',
+                        true,
+                        false,
+                        this.controllerType,
+                        this.levelNumber,
+                        this.buildInventory(),
+                        this.street.player().equippedGun().identifier()
+                    );
                 }, this);
             }
         }

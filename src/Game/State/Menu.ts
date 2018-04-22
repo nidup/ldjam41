@@ -30,11 +30,11 @@ export default class Menu extends Phaser.State {
 
         const storyX = titleX - 150;
         const storyY = titleY + 150;
-        const storyText = "Hey Rick,\n\n"
+        const storyText = "Hey Rick MacMorty,\n\n"
             +"Aliens are infesting citizens in our town, you\n"
             +"can't distinguish who is sane or contaminated.\n"
             +"You have only one option... kill them all to stop\n"
-            +"this plague.\n";
+            +"this plague and save the far west.\n";
         this.game.add.bitmapText(storyX, storyY, 'cowboy',storyText, mediumFontSize);
 
         const controlsChoiceX = storyX;

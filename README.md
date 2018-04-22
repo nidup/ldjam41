@@ -2,9 +2,12 @@
 
 Small side scrolling shoot'em up game 🔫
 
-Built in compo mode, in 48h for the [Ludum Dare 41](https://ldjam.com/events/ludum-dare/41), the theme is "Combine 2 Incompatible Genres".
+Built in compo mode, in 48h for the [Ludum Dare 41](https://ldjam.com/events/ludum-dare/41), the theme is "Combine 2 Incompatible Genres" 💪
 
-Everything is hand-crafted, from source code to assets 💪
+Everything is hand-crafted, from source code to assets:
+ - sound tracks with [Beepbox](https://beepbox.co).
+ - pixel Art with [Aseprite](https://www.aseprite.org/).
+ - code in Typescript + [PhaserJS](https://phaser.io).
 
 # Demo
 

@@ -1,6 +1,6 @@
 
 import {
-    BaseEvent, CitizenKilled, CopKilled, GameEvents, HeroKilled, HeroNursed, MoneyPicked,
+    BaseEvent, CitizenKilled, CopKilled, GameEvents, HeroKilled, HeroNursed, MachineGunPicked, MoneyPicked,
     ShotGunPicked
 } from "../Character/Player/Events";
 import {Hero} from "../Character/Player/Hero";
@@ -23,7 +23,6 @@ export class FlashMessages
     {
         const messages = [];
         if (raisedEvent instanceof CopKilled) {
-            //callbackContext.buildCopKillerMessage(messages);
             callbackContext.buildCarnageMessage(messages);
         }
 
@@ -33,6 +32,10 @@ export class FlashMessages
 
         if (raisedEvent instanceof ShotGunPicked) {
             callbackContext.buildFirstShotgunMessage(messages);
+        }
+
+        if (raisedEvent instanceof MachineGunPicked) {
+            callbackContext.buildFirstMachinegunMessage(messages);
         }
 
         if (raisedEvent instanceof MoneyPicked) {
@@ -49,32 +52,13 @@ export class FlashMessages
         const fromY = 500;
         let startDelay = 0;
         messages.forEach(function(message: Message) {
-            const newMessage = callbackContext.group.game.add.bitmapText(x, fromY, 'carrier-command', message.content(), 20);
+            const newMessage = callbackContext.group.game.add.bitmapText(x, fromY, 'cowboy', message.content(), 20);
             const duration = 3000;
             const tweenAlpha = callbackContext.group.game.add.tween(newMessage).to( { alpha: 0 }, duration, "Linear", true, startDelay);
             callbackContext.group.game.add.tween(newMessage).to( { y: newMessage.y - 400 }, duration, "Linear", true, startDelay);
             tweenAlpha.onComplete.addOnce(function () {newMessage.destroy();});
             startDelay = startDelay + 350;
         });
-    }
-
-    private buildCopKillerMessage(messages: Message[])
-    {
-        const lastSeconds = this.group.game.time.now - 10000;
-        const lastKilledEvents = this.gameEvents.all()
-            .filter(function(event: BaseEvent) {
-                return event instanceof CopKilled;
-            }).filter(function(event: BaseEvent) {
-                return event.time() >= lastSeconds;
-            });
-
-        if (lastKilledEvents.length >= 10) {
-            messages.push(new Message("Cop killer! " + lastKilledEvents.length + " cops killed!!!"));
-        } else if (lastKilledEvents.length >= 5) {
-            messages.push(new Message("Cop killer! " + lastKilledEvents.length + " cops killed!!!"));
-        } else if (lastKilledEvents.length >= 2) {
-            messages.push(new Message("Cop killer! " + lastKilledEvents.length + " cops killed!!!"));
-        }
     }
 
     private buildCarnageMessage(messages: Message[])
@@ -88,11 +72,11 @@ export class FlashMessages
             });
 
         if (lastKilledEvents.length >= 10) {
-            messages.push(new Message("Rampage! " + lastKilledEvents.length + " killed!!!"));
+            messages.push(new Message("Rampage! " + "more than ten kills in ten seconds!"));
         } else if (lastKilledEvents.length >= 6) {
-            messages.push(new Message("Carnage! " + lastKilledEvents.length + " killed!!!"));
+            messages.push(new Message("Carnage! " + "more than six killed in ten seconds!"));
         } else if (lastKilledEvents.length >= 3) {
-            messages.push(new Message("Butchery! " + lastKilledEvents.length + " killed!!!"));
+            messages.push(new Message("Butchery! " + "more than three killed in ten seconds!"));
         }
     }
 
@@ -106,17 +90,29 @@ export class FlashMessages
         }
     }
 
+    private buildFirstMachinegunMessage(messages: Message[])
+    {
+        const machinePickedEvents = this.gameEvents.all().filter(function(event: BaseEvent) {
+            return event instanceof MachineGunPicked;
+        });
+        if (machinePickedEvents.length === 1) {
+            messages.push(new Message("Got a machinegun, hell yeah!"));
+        }
+    }
+
     private buildPickedMoneyMessage(messages: Message[], raisedEvent: MoneyPicked)
     {
         const moneyPickedEvents = this.gameEvents.all().filter(function(event: BaseEvent) {
             return event instanceof MoneyPicked;
         });
-        if (raisedEvent.totalAmount() >= 500 && raisedEvent.totalAmount() - raisedEvent.pickedAmount() <= 500) {
-            messages.push(new Message("Money! 500 credits picked!"));
+        if (raisedEvent.totalAmount() >= 100 && raisedEvent.totalAmount() - raisedEvent.pickedAmount() <= 100) {
+            messages.push(new Message("Money! Hundred bucks picked!"));
+        } else if (raisedEvent.totalAmount() >= 500 && raisedEvent.totalAmount() - raisedEvent.pickedAmount() <= 500) {
+            messages.push(new Message("Money! Five hundred bucks picked!"));
         } else if (raisedEvent.totalAmount() >= 1000 && raisedEvent.totalAmount() - raisedEvent.pickedAmount() <= 1000) {
-            messages.push(new Message("Money! 1000 credits picked!"));
+            messages.push(new Message("Money! Thousand bucks picked!"));
         } else if (moneyPickedEvents.length === 1) {
-            messages.push(new Message("Money! "+raisedEvent.pickedAmount()+" credits picked!"));
+            messages.push(new Message("Money! "+raisedEvent.pickedAmount()+" bucks picked!"));
         }
     }
 }

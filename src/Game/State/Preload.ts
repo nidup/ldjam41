@@ -3,7 +3,7 @@ import {Config} from "../../Config";
 
 export default class Preload extends Phaser.State
 {
-    private skipMenu = true;
+    private skipMenu = false;
     private skipToLevel = 1;
 
     public preload ()
@@ -29,6 +29,7 @@ export default class Preload extends Phaser.State
 
     private loadAudio()
     {
+        this.load.audio('far-west', 'assets/sounds/far-west.ogg');
     }
 
     private loadLevels()

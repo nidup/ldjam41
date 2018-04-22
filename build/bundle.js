@@ -181,7 +181,7 @@ exports.MachineGunPicked = MachineGunPicked;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const HorizontalDirection_1 = __webpack_require__(10);
+const HorizontalDirection_1 = __webpack_require__(9);
 class CharacterHurt {
     blinkHumanOrReplicant(host, fromDirection, replicant) {
         let tint = 0xb43232;
@@ -217,25 +217,6 @@ exports.CharacterHurt = CharacterHurt;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Config_1 = __webpack_require__(0);
-class DeviceDetector {
-    constructor(device) {
-        this.device = device;
-    }
-    isMobile() {
-        return !this.device.desktop || Config_1.Config.fakingMobileForDebug();
-    }
-}
-exports.DeviceDetector = DeviceDetector;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @see https://gamedevelopment.tutsplus.com/tutorials/finite-state-machines-theory-and-implementation--gamedev-11867
  */
@@ -266,7 +247,7 @@ exports.StackFSM = StackFSM;
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -288,7 +269,7 @@ exports.State = State;
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -333,7 +314,7 @@ exports.BrainStateMarker = BrainStateMarker;
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -364,7 +345,7 @@ exports.Energy = Energy;
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -453,7 +434,7 @@ exports.Steering = Steering;
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -484,7 +465,7 @@ exports.Vision = Vision;
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -504,7 +485,7 @@ exports.HorizontalDirection = HorizontalDirection;
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -550,6 +531,25 @@ exports.PickableItem = PickableItem;
 
 
 /***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const Config_1 = __webpack_require__(0);
+class DeviceDetector {
+    constructor(device) {
+        this.device = device;
+    }
+    isMobile() {
+        return !this.device.desktop || Config_1.Config.fakingMobileForDebug();
+    }
+}
+exports.DeviceDetector = DeviceDetector;
+
+
+/***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -586,7 +586,7 @@ exports.Hospital = Hospital;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const HorizontalDirection_1 = __webpack_require__(10);
+const HorizontalDirection_1 = __webpack_require__(9);
 class BulletHits {
     constructor(myself, myGun, street) {
         this.shooter = myself;
@@ -664,7 +664,7 @@ exports.HeroCamera = HeroCamera;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const Config_1 = __webpack_require__(0);
-const DeviceDetector_1 = __webpack_require__(3);
+const DeviceDetector_1 = __webpack_require__(11);
 class KeyBoardController {
     constructor(game) {
         this.cursors = game.input.keyboard.createCursorKeys();
@@ -858,6 +858,10 @@ class Gun {
         this.weapon.onFire.add(function () {
             this.amnoAmount--;
         }, this);
+        this.weapon.onFire.add(function () {
+            const shootAudio = this.game.add.audio('shoot', 0.5, false);
+            shootAudio.play();
+        }, this);
     }
     fire() {
         this.weapon.fire();
@@ -912,6 +916,10 @@ class MachineGun {
         this.weapon.onFire.add(function () {
             this.amnoAmount = this.amnoAmount - 1;
         }, this);
+        this.weapon.onFire.add(function () {
+            const shootAudio = this.game.add.audio('shoot', 0.5, false);
+            shootAudio.play();
+        }, this);
     }
     fire() {
         this.weapon.fire();
@@ -965,6 +973,10 @@ class ShotGun {
         this.amnoAmount = amno;
         this.weapon.onFire.add(function () {
             this.amnoAmount = this.amnoAmount - 0.25;
+        }, this);
+        this.weapon.onFire.add(function () {
+            const shootAudio = this.game.add.audio('shoot', 0.5, false);
+            shootAudio.play();
         }, this);
     }
     fire() {
@@ -1291,11 +1303,11 @@ exports.Small = Small;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const StackFSM_1 = __webpack_require__(4);
-const State_1 = __webpack_require__(5);
-const Energy_1 = __webpack_require__(7);
-const Steering_1 = __webpack_require__(8);
-const Vision_1 = __webpack_require__(9);
+const StackFSM_1 = __webpack_require__(3);
+const State_1 = __webpack_require__(4);
+const Energy_1 = __webpack_require__(6);
+const Steering_1 = __webpack_require__(7);
+const Vision_1 = __webpack_require__(8);
 class CitizenBrain {
     constructor(citizen, street, group, fearStatus) {
         this.walk = () => {
@@ -1409,11 +1421,11 @@ exports.CitizenBrain = CitizenBrain;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const StackFSM_1 = __webpack_require__(4);
-const State_1 = __webpack_require__(5);
-const Energy_1 = __webpack_require__(7);
-const Steering_1 = __webpack_require__(8);
-const Vision_1 = __webpack_require__(9);
+const StackFSM_1 = __webpack_require__(3);
+const State_1 = __webpack_require__(4);
+const Energy_1 = __webpack_require__(6);
+const Steering_1 = __webpack_require__(7);
+const Vision_1 = __webpack_require__(8);
 class CopBrain {
     constructor(cop, gun, street, group) {
         this.patrol = () => {
@@ -1520,11 +1532,11 @@ exports.CopBrain = CopBrain;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const StackFSM_1 = __webpack_require__(4);
-const State_1 = __webpack_require__(5);
-const Energy_1 = __webpack_require__(7);
-const Steering_1 = __webpack_require__(8);
-const Vision_1 = __webpack_require__(9);
+const StackFSM_1 = __webpack_require__(3);
+const State_1 = __webpack_require__(4);
+const Energy_1 = __webpack_require__(6);
+const Steering_1 = __webpack_require__(7);
+const Vision_1 = __webpack_require__(8);
 class SwatBrain {
     constructor(swat, gun, street, group) {
         this.patrol = () => {
@@ -1635,8 +1647,8 @@ const Config_1 = __webpack_require__(0);
 const CitizenBrain_1 = __webpack_require__(28);
 const CharacterHurt_1 = __webpack_require__(2);
 const FearStatus_1 = __webpack_require__(35);
-const PickableItem_1 = __webpack_require__(11);
-const BrainStateMarker_1 = __webpack_require__(6);
+const PickableItem_1 = __webpack_require__(10);
+const BrainStateMarker_1 = __webpack_require__(5);
 class Citizen extends Phaser.Sprite {
     constructor(group, x, y, key, street, replicant) {
         super(group.game, x, y, key, 0);
@@ -1672,6 +1684,14 @@ class Citizen extends Phaser.Sprite {
         }
     }
     die() {
+        if (this.isReplicant) {
+            const audio = this.game.add.audio('alien-dying', 1, false);
+            audio.play();
+        }
+        else {
+            const audio = this.game.add.audio('human-dying', 0.5, false);
+            audio.play();
+        }
         this.animations.play('die');
         let randMoney = this.group.game.rnd.integerInRange(1, 3);
         if (randMoney === 1) {
@@ -1755,8 +1775,8 @@ const Gun_1 = __webpack_require__(16);
 const ShotGun_1 = __webpack_require__(18);
 const BulletHits_1 = __webpack_require__(13);
 const CharacterHurt_1 = __webpack_require__(2);
-const PickableItem_1 = __webpack_require__(11);
-const BrainStateMarker_1 = __webpack_require__(6);
+const PickableItem_1 = __webpack_require__(10);
+const BrainStateMarker_1 = __webpack_require__(5);
 class Cop extends Phaser.Sprite {
     constructor(group, x, y, key, street, replicant) {
         super(group.game, x, y, key, 0);
@@ -1805,6 +1825,14 @@ class Cop extends Phaser.Sprite {
         }
     }
     die() {
+        if (this.isReplicant) {
+            const audio = this.game.add.audio('alien-dying', 1, false);
+            audio.play();
+        }
+        else {
+            const audio = this.game.add.audio('human-dying', 0.5, false);
+            audio.play();
+        }
         this.animations.play('die');
         if (this.key === 'cop') {
             new PickableItem_1.PickableItem(this.group, this.x, this.y, 'Gun', this.street.player());
@@ -1907,8 +1935,8 @@ const SwatBrain_1 = __webpack_require__(30);
 const MachineGun_1 = __webpack_require__(17);
 const BulletHits_1 = __webpack_require__(13);
 const CharacterHurt_1 = __webpack_require__(2);
-const PickableItem_1 = __webpack_require__(11);
-const BrainStateMarker_1 = __webpack_require__(6);
+const PickableItem_1 = __webpack_require__(10);
+const BrainStateMarker_1 = __webpack_require__(5);
 class Swat extends Phaser.Sprite {
     constructor(group, x, y, key, street, replicant) {
         super(group.game, x, y, key, 0);
@@ -1948,6 +1976,14 @@ class Swat extends Phaser.Sprite {
         }
     }
     die() {
+        if (this.isReplicant) {
+            const audio = this.game.add.audio('alien-dying', 1, false);
+            audio.play();
+        }
+        else {
+            const audio = this.game.add.audio('human-dying', 0.5, false);
+            audio.play();
+        }
         this.animations.play('die');
         new PickableItem_1.PickableItem(this.group, this.x, this.y, 'MachineGun', this.street.player());
         this.dead = true;
@@ -2145,7 +2181,7 @@ exports.BackBag = BackBag;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const HorizontalDirection_1 = __webpack_require__(10);
+const HorizontalDirection_1 = __webpack_require__(9);
 const Events_1 = __webpack_require__(1);
 class BulletHits {
     constructor(myself, street) {
@@ -2338,15 +2374,21 @@ class Hero extends Phaser.Sprite {
     }
     pick(item) {
         if (item.key === 'Money') {
+            const audio = this.game.add.audio('pick-money', 0.5, false);
+            audio.play();
             const randAmount = this.game.rnd.integerInRange(2, 50);
             this.moneyAmount = this.moneyAmount + randAmount;
             this.gameEvents.register(new Events_1.MoneyPicked(this.game.time.now, randAmount, this.moneyAmount));
         }
         else if (item.key === 'Gun') {
+            const audio = this.game.add.audio('pick-weapon', 1, false);
+            audio.play();
             this.gun.reload(11);
             this.gameEvents.register(new Events_1.GunPicked(this.game.time.now));
         }
         else if (item.key === 'ShotGun') {
+            const audio = this.game.add.audio('pick-weapon', 1, false);
+            audio.play();
             if (this.shotgunAmno() === 0) {
                 this.switchToShotGun();
             }
@@ -2354,6 +2396,8 @@ class Hero extends Phaser.Sprite {
             this.gameEvents.register(new Events_1.ShotGunPicked(this.game.time.now));
         }
         else if (item.key === 'MachineGun') {
+            const audio = this.game.add.audio('pick-weapon', 1, false);
+            audio.play();
             if (this.machinegunAmno() === 0) {
                 this.switchToMachineGun();
             }
@@ -2440,6 +2484,8 @@ class Hero extends Phaser.Sprite {
     }
     die() {
         if (!this.dead) {
+            const audio = this.game.add.audio('human-dying', 0.5, false);
+            audio.play();
             this.dead = true;
             this.body.velocity.x = 0;
             this.body.velocity.y = 0;
@@ -2536,7 +2582,7 @@ exports.LevelLoader = LevelLoader;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const DeviceDetector_1 = __webpack_require__(3);
+const DeviceDetector_1 = __webpack_require__(11);
 const Config_1 = __webpack_require__(0);
 class Boot extends Phaser.State {
     create() {
@@ -2566,11 +2612,12 @@ exports.default = Boot;
 Object.defineProperty(exports, "__esModule", { value: true });
 const Config_1 = __webpack_require__(0);
 const Controller_1 = __webpack_require__(15);
-const DeviceDetector_1 = __webpack_require__(3);
 class Menu extends Phaser.State {
+    constructor() {
+        super(...arguments);
+        this.starting = false;
+    }
     create() {
-        const detector = new DeviceDetector_1.DeviceDetector(this.game.device);
-        this.isMobile = detector.isMobile();
         const verySmallFontSize = 10;
         const smallFontSize = 14;
         const mediumFontSize = 20;
@@ -2579,9 +2626,6 @@ class Menu extends Phaser.State {
         //this.background = this.game.add.sprite(0, 0, 'Menu');
         //this.background.scale.set(Config.pixelScaleRatio(), Config.pixelScaleRatio());
         let titleX = 260;
-        if (this.isMobile) {
-            titleX += Config_1.Config.mobileExtraSidePadding();
-        }
         const titleY = 113;
         this.game.add.bitmapText(titleX, titleY, 'cowboy', 'Cowboys vs Aliens', largeFontSize);
         const storyX = titleX - 150;
@@ -2594,11 +2638,7 @@ class Menu extends Phaser.State {
         this.game.add.bitmapText(storyX, storyY, 'cowboy', storyText, mediumFontSize);
         const controlsChoiceX = storyX;
         const controlsChoiceY = storyY + 350;
-        /*if (this.isMobile) {
-            this.setupForMobile(controlsChoiceX, controlsChoiceY, smallFontSize);
-        } else {*/
         this.setupForComputer(controlsChoiceX, controlsChoiceY, smallFontSize);
-        //}
         const startX = storyX + 250;
         const startY = storyY + 220;
         this.startText = this.game.add.bitmapText(startX, startY, 'cowboy', '', mediumFontSize);
@@ -2622,72 +2662,27 @@ class Menu extends Phaser.State {
         heroSprite.scale.x = -Config_1.Config.pixelScaleRatio();
         heroSprite.animations.add('selected', [0, 1, 2, 3, 4], 4, true);
         heroSprite.play('selected');
-    }
-    setupForMobile(controlsChoiceX, controlsChoiceY, smallFontSize) {
-        this.controlsVirtualpadText = "Controls [Virtual Gamepad Selected]:\n\n"
-            + " - Move: arrows\n\n"
-            + " - Fire: button X\n\n"
-            + " - Switch weapon: button Y\n\n";
-        this.controlsText = this.game.add.bitmapText(controlsChoiceX, controlsChoiceY, 'cowboy', this.controlsVirtualpadText, smallFontSize);
-        this.chosenController = new Controller_1.VirtualPadController(this.game);
+        this.music = this.game.add.audio('far-west');
+        this.music.loopFull();
+        this.shootAudio = this.game.add.audio('shoot');
     }
     setupForComputer(controlsChoiceX, controlsChoiceY, smallFontSize) {
         this.controlsKeyboardText = "Keyboard Controls:\n"
             + " - Move: arrows\n"
             + " - Shoot: space bar\n"
             + " - Switch weapon: S\n";
-        this.controlsGamepadText = "Controls [Gamepad Selected]:\n\n"
-            + " - Move: arrows\n\n"
-            + " - Fire: button X\n\n"
-            + " - Switch weapon: button Y\n\n";
         this.controlsText = this.game.add.bitmapText(controlsChoiceX, controlsChoiceY, 'cowboy', this.controlsKeyboardText, smallFontSize);
         this.keyboardController = new Controller_1.KeyBoardController(this.game);
-        this.gamepadController = new Controller_1.GamePadController(this.game);
         this.chosenController = this.keyboardController;
-        /*
-        const indicatorX = 50;
-        const indicatorY = 730;
-        this.gamepadIndicatorSprite = this.game.add.sprite(indicatorX,indicatorY, 'ControllerIndicator');
-        this.gamepadIndicatorSprite.scale.set(Config.pixelScaleRatio(), Config.pixelScaleRatio());
-        this.gamepadIndicatorText = this.game.add.bitmapText(indicatorX + 50, indicatorY + 10, 'carrier-command','', smallFontSize);
-        */
     }
     update() {
         this.startText.setText('Press space key to start');
-        /*
-        if (this.isMobile) {
-            this.startText.setText('Press X key to start');
-        } else {
-            if (this.gamepadController.supported()) {
-                this.gamepadIndicatorSprite.animations.frame = 0;
-
-                if (this.chosenController.switchingWeapon()) {
-                    if (this.chosenController === this.keyboardController) {
-                        this.chosenController = this.gamepadController;
-                        this.controlsText.setText(this.controlsGamepadText);
-                    } else {
-                        this.chosenController = this.keyboardController;
-                        this.controlsText.setText(this.controlsKeyboardText);
-                    }
-                }
-
-                if (this.chosenController === this.keyboardController) {
-                    this.gamepadIndicatorText.setText('Keyboard is selected, press S key to use gamepad');
-                    this.startText.setText('Press space key to start');
-                } else {
-                    this.gamepadIndicatorText.setText('Gamepad is selected, press Y button to use keyboard');
-                    this.startText.setText('Press X button to start');
-                }
-
-            } else {
-                this.gamepadIndicatorSprite.animations.frame = 1;
-                this.gamepadIndicatorText.setText('Gamepad is not supported, try to re-plug');
-                this.startText.setText('Press space key to start');
-                this.chosenController = this.keyboardController;
-            }
-        }*/
-        if (this.chosenController.shooting()) {
-            this.game.state.start('Play', true, false, this.chosenController.identifier());
+        if (this.chosenController.shooting() && this.starting == false) {
+            this.starting = true;
+            this.shootAudio.play('', 0, 0.5, false);
+            this.shootAudio.onStop.addOnce(function () {
+                this.game.state.start('Play', true, false, this.chosenController.identifier());
+            }, this);
         }
     }
     shutdown() {
@@ -2713,7 +2708,7 @@ const BuildingLayout_1 = __webpack_require__(21);
 const Config_1 = __webpack_require__(0);
 const LevelLoader_1 = __webpack_require__(44);
 const Controller_1 = __webpack_require__(15);
-const DeviceDetector_1 = __webpack_require__(3);
+const DeviceDetector_1 = __webpack_require__(11);
 const StreetLimits_1 = __webpack_require__(50);
 const CharactersGenerator_1 = __webpack_require__(38);
 const Events_1 = __webpack_require__(1);
@@ -2819,10 +2814,6 @@ class Play extends Phaser.State {
         const worldHeight = 800;
         this.game.world.setBounds(worldBoundX, worldBoundY, worldWidth, worldHeight);
         this.game.camera.follow(this.street.player());
-        if (this.levelNumber == 1) {
-            this.music = this.game.add.audio('far-west');
-            this.music.loopFull();
-        }
     }
     update() {
         if (this.street.isEmpty()) {
@@ -2920,7 +2911,6 @@ exports.default = Play;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Config_1 = __webpack_require__(0);
 class Preload extends Phaser.State {
     constructor() {
         super(...arguments);
@@ -2935,19 +2925,19 @@ class Preload extends Phaser.State {
     }
     create() {
         if (this.skipMenu) {
-            if (Config_1.Config.fakingMobileForDebug()) {
-                this.game.state.start('Play', true, false, 'virtualpad', this.skipToLevel);
-            }
-            else {
-                this.game.state.start('Play', true, false, 'keyboard', this.skipToLevel);
-            }
+            this.game.state.start('Play', true, false, 'keyboard', this.skipToLevel);
         }
         else {
             this.game.state.start('Menu');
         }
     }
     loadAudio() {
-        this.load.audio('far-west', 'assets/sounds/far-west.ogg');
+        this.load.audio('far-west', 'assets/sounds/far-west2.ogg');
+        this.load.audio('shoot', 'assets/sounds/single-shoot.ogg');
+        this.load.audio('pick-money', 'assets/sounds/pick-money.ogg');
+        this.load.audio('pick-weapon', 'assets/sounds/pick-weapon.ogg');
+        this.load.audio('alien-dying', 'assets/sounds/alien-dying.ogg');
+        this.load.audio('human-dying', 'assets/sounds/human-dying.ogg');
     }
     loadLevels() {
         this.load.text('levels', 'assets/data/levels.json');

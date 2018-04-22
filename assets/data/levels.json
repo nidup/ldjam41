@@ -2,11 +2,22 @@
   {
     "tutorial": "Aliens are hidden in the population, no way to recognize infected citizens. You have no choice... kill'em all.",
     "characters": {
-      "cops_with_gun": 3,
-      "cops_with_shotgun": 3,
-      "swats": 3,
-      "citizens": 3,
-      "replicants": 12
+      "citizens": {
+        "sane": 3,
+        "infected": 1
+      },
+      "cowboy_with_gun": {
+        "sane": 0,
+        "infected": 0
+      },
+      "cowboy_with_shotgun": {
+        "sane": 0,
+        "infected": 0
+      },
+      "cowboy_with_machinegun": {
+        "sane": 0,
+        "infected": 0
+      }
     },
     "buildings": [
       "Small",
@@ -20,11 +31,22 @@
   {
     "tutorial": "Take care to armed cowboys, they'll don't hesitate to shoot at you. Once killed, you can pick-up extra amno.",
     "characters": {
-      "cops_with_gun": 1,
-      "cops_with_shotgun": 0,
-      "swats": 0,
-      "citizens": 6,
-      "replicants": 4
+      "citizens": {
+        "sane": 4,
+        "infected": 2
+      },
+      "cowboy_with_gun": {
+        "sane": 0,
+        "infected": 1
+      },
+      "cowboy_with_shotgun": {
+        "sane": 0,
+        "infected": 0
+      },
+      "cowboy_with_machinegun": {
+        "sane": 0,
+        "infected": 0
+      }
     },
     "buildings": [
       "Hostel",
@@ -37,11 +59,22 @@
   {
     "tutorial": "Citizen flee away when you're aggressive, when they don't see you anymore, they go back to their normal behavior",
     "characters": {
-      "cops_with_gun": 2,
-      "cops_with_shotgun": 0,
-      "swats": 0,
-      "citizens": 6,
-      "replicants": 4
+      "citizens": {
+        "sane": 4,
+        "infected": 3
+      },
+      "cowboy_with_gun": {
+        "sane": 1,
+        "infected": 1
+      },
+      "cowboy_with_shotgun": {
+        "sane": 0,
+        "infected": 0
+      },
+      "cowboy_with_machinegun": {
+        "sane": 0,
+        "infected": 0
+      }
     },
     "buildings": [
       "Hostel",
@@ -54,11 +87,22 @@
   {
     "tutorial": "When seing you're agressive, an armed cowboy will shoot at you. He may hurts other citizens helping you to clear the street.",
     "characters": {
-      "cops_with_gun": 6,
-      "cops_with_shotgun": 0,
-      "swats": 0,
-      "citizens": 12,
-      "replicants": 8
+      "citizens": {
+        "sane": 7,
+        "infected": 5
+      },
+      "cowboy_with_gun": {
+        "sane": 4,
+        "infected": 2
+      },
+      "cowboy_with_shotgun": {
+        "sane": 0,
+        "infected": 0
+      },
+      "cowboy_with_machinegun": {
+        "sane": 0,
+        "infected": 0
+      }
     },
     "buildings": [
       "Small",
@@ -71,11 +115,22 @@
   {
     "tutorial": "Cowboys can also be equipped with shotguns, super efficient to clear a crowdy place but not as accurate as your colt.",
     "characters": {
-      "cops_with_gun": 3,
-      "cops_with_shotgun": 2,
-      "swats": 0,
-      "citizens": 10,
-      "replicants": 6
+      "citizens": {
+        "sane": 6,
+        "infected": 4
+      },
+      "cowboy_with_gun": {
+        "sane": 1,
+        "infected": 1
+      },
+      "cowboy_with_shotgun": {
+        "sane": 1,
+        "infected": 1
+      },
+      "cowboy_with_machinegun": {
+        "sane": 0,
+        "infected": 0
+      }
     },
     "buildings": [
       "Small",
@@ -86,13 +141,24 @@
     ]
   },
   {
-    "tutorial": "Shotgun is effic.",
+    "tutorial": "Looks like the plague is progressing, more and more citizens are infected.",
     "characters": {
-      "cops_with_gun": 2,
-      "cops_with_shotgun": 4,
-      "swats": 0,
-      "citizens": 16,
-      "replicants": 7
+      "citizens": {
+        "sane": 8,
+        "infected": 8
+      },
+      "cowboy_with_gun": {
+        "sane": 1,
+        "infected": 1
+      },
+      "cowboy_with_shotgun": {
+        "sane": 2,
+        "infected": 2
+      },
+      "cowboy_with_machinegun": {
+        "sane": 0,
+        "infected": 0
+      }
     },
     "buildings": [
       "Medium",
@@ -103,13 +169,24 @@
     ]
   },
   {
-    "tutorial": "Keep in mind that friendly fire is your best friend forever! ",
+    "tutorial": "Friendly fire is definitely your best friend forever! ",
     "characters": {
-      "cops_with_gun": 5,
-      "cops_with_shotgun": 5,
-      "swats": 0,
-      "citizens": 12,
-      "replicants": 9
+      "citizens": {
+        "sane": 4,
+        "infected": 8
+      },
+      "cowboy_with_gun": {
+        "sane": 2,
+        "infected": 3
+      },
+      "cowboy_with_shotgun": {
+        "sane": 2,
+        "infected": 3
+      },
+      "cowboy_with_machinegun": {
+        "sane": 0,
+        "infected": 0
+      }
     },
     "buildings": [
       "Small",
@@ -120,13 +197,24 @@
     ]
   },
   {
-    "tutorial": "Some soldier are patrolling in the town, they're super resistant and equipped with machine guns.",
+    "tutorial": "Mexican soldiers are patrolling in the town, they're super resistant and equipped with machine guns.",
     "characters": {
-      "cops_with_gun": 2,
-      "cops_with_shotgun": 0,
-      "swats": 2,
-      "citizens": 10,
-      "replicants": 6
+      "citizens": {
+        "sane": 4,
+        "infected": 6
+      },
+      "cowboy_with_gun": {
+        "sane": 1,
+        "infected": 1
+      },
+      "cowboy_with_shotgun": {
+        "sane": 0,
+        "infected": 0
+      },
+      "cowboy_with_machinegun": {
+        "sane": 1,
+        "infected": 1
+      }
     },
     "buildings": [
       "Small",
@@ -137,13 +225,24 @@
     ]
   },
   {
-    "tutorial": "Keep in mind that each weapon behaves differently and inaccurate shots can be a drawback as well as an advantage.",
+    "tutorial": "Each weapon behaves differently and spread shots can be a drawback as well as an advantage.",
     "characters": {
-      "cops_with_gun": 4,
-      "cops_with_shotgun": 4,
-      "swats": 2,
-      "citizens": 16,
-      "replicants": 8
+      "citizens": {
+        "sane": 6,
+        "infected": 10
+      },
+      "cowboy_with_gun": {
+        "sane": 2,
+        "infected": 2
+      },
+      "cowboy_with_shotgun": {
+        "sane": 2,
+        "infected": 2
+      },
+      "cowboy_with_machinegun": {
+        "sane": 1,
+        "infected": 1
+      }
     },
     "buildings": [
       "Hostel",
@@ -155,13 +254,24 @@
     ]
   },
   {
-    "tutorial": "Amno are not unlimited, use them wisely but use them :)",
+    "tutorial": "Amno are not unlimited, use them wisely but use them all :)",
     "characters": {
-      "cops_with_gun": 10,
-      "cops_with_shotgun": 1,
-      "swats": 0,
-      "citizens": 14,
-      "replicants": 9
+      "citizens": {
+        "sane": 6,
+        "infected": 8
+      },
+      "cowboy_with_gun": {
+        "sane": 6,
+        "infected": 4
+      },
+      "cowboy_with_shotgun": {
+        "sane": 1,
+        "infected": 1
+      },
+      "cowboy_with_machinegun": {
+        "sane": 1,
+        "infected": 0
+      }
     },
     "buildings": [
       "Hostel",
@@ -172,13 +282,24 @@
     ]
   },
   {
-    "tutorial": "Sometimes, it's a lot of work for very few aliens...",
+    "tutorial": "Sometimes, it's a lot of work for very few aliens.",
     "characters": {
-      "cops_with_gun": 7,
-      "cops_with_shotgun": 4,
-      "swats": 2,
-      "citizens": 12,
-      "replicants": 1
+      "citizens": {
+        "sane": 11,
+        "infected": 1
+      },
+      "cowboy_with_gun": {
+        "sane": 7,
+        "infected": 0
+      },
+      "cowboy_with_shotgun": {
+        "sane": 4,
+        "infected": 0
+      },
+      "cowboy_with_machinegun": {
+        "sane": 2,
+        "infected": 0
+      }
     },
     "buildings": [
       "Hostel",
@@ -191,11 +312,22 @@
   {
     "tutorial": "Street can be long... super long...",
     "characters": {
-      "cops_with_gun": 12,
-      "cops_with_shotgun": 7,
-      "swats": 4,
-      "citizens": 23,
-      "replicants": 12
+      "citizens": {
+        "sane": 11,
+        "infected": 1
+      },
+      "cowboy_with_gun": {
+        "sane": 7,
+        "infected": 0
+      },
+      "cowboy_with_shotgun": {
+        "sane": 4,
+        "infected": 0
+      },
+      "cowboy_with_machinegun": {
+        "sane": 2,
+        "infected": 0
+      }
     },
     "buildings": [
       "Small",
@@ -211,11 +343,22 @@
   {
     "tutorial": "Street can be long... super long...",
     "characters": {
-      "cops_with_gun": 12,
-      "cops_with_shotgun": 7,
-      "swats": 4,
-      "citizens": 23,
-      "replicants": 12
+      "citizens": {
+        "sane": 11,
+        "infected": 1
+      },
+      "cowboy_with_gun": {
+        "sane": 7,
+        "infected": 0
+      },
+      "cowboy_with_shotgun": {
+        "sane": 4,
+        "infected": 0
+      },
+      "cowboy_with_machinegun": {
+        "sane": 2,
+        "infected": 0
+      }
     },
     "buildings": [
       "Small",

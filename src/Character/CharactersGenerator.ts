@@ -59,50 +59,48 @@ export class CharactersGenerator
 
     generateBots(street: Street, cops: Cops, citizens: Citizens, swats: Swats): void
     {
-        let nbReplicants = this.level.replicants();
-        for (let indCop = 0; indCop < this.level.copsWithGun(); indCop++) {
+        for (let indCiv = 0; indCiv < this.level.saneCitizens(); indCiv++) {
             let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
             let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
-            let isReplicant = false;
-            let randReplicant = this.characterGroup.game.rnd.integerInRange(1, 5) === 1;
-            if (nbReplicants > 0 && randReplicant) {
-                isReplicant = true;
-                nbReplicants--;
-            }
-            cops.add(new Cop(this.characterGroup, randX, randY, 'cop', street, isReplicant));
+            citizens.add(new Citizen(this.characterGroup, randX, randY, 'citizen1', street, false));
         }
-        for (let indCop = 0; indCop < this.level.copsWithShotGun(); indCop++) {
+        for (let indCiv = 0; indCiv < this.level.infectedCitizens(); indCiv++) {
             let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
             let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
-            let isReplicant = false;
-            let randReplicant = this.characterGroup.game.rnd.integerInRange(1, 5) === 1;
-            if (nbReplicants > 0 && randReplicant) {
-                isReplicant = true;
-                nbReplicants--;
-            }
-            cops.add(new Cop(this.characterGroup, randX, randY, 'cop-shotgun', street, isReplicant));
-        }
-        for (let indSwat = 0; indSwat < this.level.swats(); indSwat++) {
-            let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
-            let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
-            let isReplicant = false;
-            let randReplicant = this.characterGroup.game.rnd.integerInRange(1, 5) === 1;
-            if (nbReplicants > 0 && randReplicant) {
-                isReplicant = true;
-                nbReplicants--;
-            }
-            swats.add(new Swat(this.characterGroup, randX, randY, 'enemy-machinegun', street, isReplicant));
+            citizens.add(new Citizen(this.characterGroup, randX, randY, 'citizen1', street, true));
         }
 
-        for (let indCiv = 0; indCiv < this.level.citizens(); indCiv++) {
+        for (let indCop = 0; indCop < this.level.saneCowboysWithGun(); indCop++) {
             let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
             let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
-            let isReplicant = false;
-            if (nbReplicants > 0) {
-                isReplicant = true;
-                nbReplicants--;
-            }
-            citizens.add(new Citizen(this.characterGroup, randX, randY, 'citizen1', street, isReplicant));
+            cops.add(new Cop(this.characterGroup, randX, randY, 'cop', street, false));
+        }
+        for (let indCop = 0; indCop < this.level.infectedCowboysWithGun(); indCop++) {
+            let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
+            let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
+            cops.add(new Cop(this.characterGroup, randX, randY, 'cop', street, true));
+        }
+
+        for (let indCop = 0; indCop < this.level.saneCowboysWithShotgun(); indCop++) {
+            let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
+            let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
+            cops.add(new Cop(this.characterGroup, randX, randY, 'cop-shotgun', street, false));
+        }
+        for (let indCop = 0; indCop < this.level.infectedCowboysWithShotgun(); indCop++) {
+            let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
+            let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
+            cops.add(new Cop(this.characterGroup, randX, randY, 'cop-shotgun', street, true));
+        }
+
+        for (let indSwat = 0; indSwat < this.level.saneCowboysWithMachinegun(); indSwat++) {
+            let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
+            let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
+            swats.add(new Swat(this.characterGroup, randX, randY, 'enemy-machinegun', street, false));
+        }
+        for (let indSwat = 0; indSwat < this.level.infectedCowboysWithMachinegun(); indSwat++) {
+            let randX = this.characterGroup.game.rnd.integerInRange(this.limits.minX(), this.limits.maxX());
+            let randY = this.characterGroup.game.rnd.integerInRange(this.limits.minY(), this.limits.maxY());
+            swats.add(new Swat(this.characterGroup, randX, randY, 'enemy-machinegun', street, true));
         }
     }
 }

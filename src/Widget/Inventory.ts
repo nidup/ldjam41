@@ -32,7 +32,7 @@ export class Inventory extends Phaser.Sprite
 
         const statusX = this.x + 435;
         const statusY = 60;
-        this.statusText = this.game.add.bitmapText(statusX, statusY, 'cowboy','0', 17, group);
+        this.statusText = this.game.add.bitmapText(statusX, statusY, 'cowboy','0', 17);
         this.statusText.fixedToCamera = true;
         this.statusText.align = 'right';
 
@@ -48,7 +48,7 @@ export class Inventory extends Phaser.Sprite
         this.gunSprite.animations.add('unselected', [0]);
         this.gunSprite.animations.add('selected', [0, 1], 1, true);
         this.gunSprite.play('selected');
-        this.gunText = this.game.add.bitmapText(gunX - marginLeftAmountToImage, gunY + marginTopAmountToImage, 'carrier-command','0', fontSize, group);
+        this.gunText = this.game.add.bitmapText(gunX - marginLeftAmountToImage, gunY + marginTopAmountToImage, 'carrier-command','0', fontSize);
         this.gunText.fixedToCamera = true;
         this.gunText.align = 'right';
 
@@ -60,7 +60,7 @@ export class Inventory extends Phaser.Sprite
         this.shotgunSprite.animations.add('unselected', [0]);
         this.shotgunSprite.animations.add('selected', [0, 1], 1, true);
         this.shotgunSprite.play('unselected');
-        this.shotgunText = this.game.add.bitmapText(shotgunX - marginLeftAmountToImage, shotgunY + marginTopAmountToImage, 'carrier-command','0', fontSize, group);
+        this.shotgunText = this.game.add.bitmapText(shotgunX - marginLeftAmountToImage, shotgunY + marginTopAmountToImage, 'carrier-command','0', fontSize);
         this.shotgunText.fixedToCamera = true;
         this.shotgunText.align = 'right';
 
@@ -72,7 +72,7 @@ export class Inventory extends Phaser.Sprite
         this.machinegunSprite.animations.add('unselected', [0]);
         this.machinegunSprite.animations.add('selected', [0, 1], 1, true);
         this.machinegunSprite.play('unselected');
-        this.machinegunText = this.game.add.bitmapText(machinegunX - marginLeftAmountToImage, machinegunY + marginTopAmountToImage, 'carrier-command','0', fontSize, group);
+        this.machinegunText = this.game.add.bitmapText(machinegunX - marginLeftAmountToImage, machinegunY + marginTopAmountToImage, 'carrier-command','0', fontSize);
         this.machinegunText.fixedToCamera = true;
         this.machinegunText.align = 'right';
 
@@ -81,7 +81,7 @@ export class Inventory extends Phaser.Sprite
         this.moneySprite = group.game.add.sprite(moneyX, moneyY, 'Money', 0, group);
         this.moneySprite.scale.setTo(Config.pixelScaleRatio(), Config.pixelScaleRatio());
         this.moneySprite.fixedToCamera = true;
-        this.moneyText = this.game.add.bitmapText(moneyX - marginLeftAmountToImage, moneyY + marginTopAmountToImage, 'carrier-command','0', fontSize, group);
+        this.moneyText = this.game.add.bitmapText(moneyX - marginLeftAmountToImage, moneyY + marginTopAmountToImage, 'carrier-command','0', fontSize);
         this.moneyText.fixedToCamera = true;
 
         this.cameraFX = new HeroCamera(group.game.camera);

@@ -49,7 +49,7 @@ export class LevelInstructions extends Phaser.Sprite
         });
 
 
-        const tutorialText = this.game.add.bitmapText(this.x + 45, 45, 'cowboy', formattedText, fontTutorialSize, group);
+        const tutorialText = this.game.add.bitmapText(this.x + 45, 45, 'cowboy', formattedText, fontTutorialSize);
         tutorialText.fixedToCamera = true;
     }
 }

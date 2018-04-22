@@ -51,5 +51,9 @@ export class LevelInstructions extends Phaser.Sprite
 
         const tutorialText = this.game.add.bitmapText(this.x + 45, 45, 'cowboy', formattedText, fontTutorialSize);
         tutorialText.fixedToCamera = true;
+
+        const levelText = this.game.add.bitmapText(400, 300, 'cowboy','Day '+levelToDaysNumber[level.number()], 40);
+        levelText.alpha = 1;
+        const tweenAlpha = this.game.add.tween(levelText).to( { alpha: 0 }, 0, "Linear", true);
     }
 }

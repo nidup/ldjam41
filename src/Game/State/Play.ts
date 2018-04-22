@@ -15,6 +15,7 @@ import {StreetLimits} from "../StreetLimits";
 import {CharactersGenerator} from "../../Character/CharactersGenerator";
 import {Buildings} from "../../Building/Buildings";
 import {HeroNursed} from "../../Character/Player/Events";
+import {AlienQueen} from "../../Character/Bot/AlienQueen";
 
 export default class Play extends Phaser.State
 {
@@ -32,6 +33,7 @@ export default class Play extends Phaser.State
     private leftBoundMargin: Phaser.TileSprite;
     private rightBoundMargin: Phaser.TileSprite;
     private topBoundMargin: Phaser.TileSprite;
+    private isFinalLevel: boolean = false;
 
     public init (
         controllerType: string,
@@ -46,6 +48,9 @@ export default class Play extends Phaser.State
         this.controllerType = controllerType;
         this.previousGunType = currentGunType;
         this.playerPosition = playerPosition;
+        if (level == 12) {
+            this.isFinalLevel = true;
+        }
     }
 
     public create()
@@ -150,7 +155,7 @@ export default class Play extends Phaser.State
             this.previousGunType,
             this.playerPosition
         );
-        this.street = new Street(generator);
+        this.street = new Street(generator, this.isFinalLevel);
         this.buildings = layout.buildings();
 
         new LevelInstructions(interfaceLayer, streetPositionX, 0, 'LevelInstructions', level);
@@ -167,8 +172,23 @@ export default class Play extends Phaser.State
 
     public update()
     {
-        if (this.street.isEmpty()) {
-            this.nextLevel();
+        if (this.isFinalLevel) {
+            if (this.street.alienQueen().isDead()) {
+                const levelText = this.game.add.bitmapText(100, 300, 'cowboy','Congratz, you defeat the aliens!', 30);
+                levelText.alpha = 1;
+                const tweenAlpha = this.game.add.tween(levelText).to( { alpha: 0 }, 0, "Linear", true);
+                this.game.time.events.add(
+                    Phaser.Timer.SECOND * 10,
+                    function(){
+                        this.nextLevel();
+                    },
+                    this
+                );
+            }
+        } else {
+            if (this.street.isEmpty()) {
+                this.nextLevel();
+            }
         }
 
         this.game.physics.arcade.collide(this.topBoundMargin, this.street.player());
@@ -244,6 +264,8 @@ export default class Play extends Phaser.State
             this.game.debug.body(this.street.player());
             this.game.debug.cameraInfo(this.game.camera, 32, 32);
             this.game.debug.spriteInfo(this.street.player(), 32, 200);
+
+            //this.game.debug.body(this.alienQueen);
             //this.game.debug.body(this.street.citizens().all()[0]);
             //this.game.debug.spriteInfo(this.street.citizens().all()[0], 32, 300);
             //this.game.debug.bodyInfo(this.street.citizens().all()[0], 32, 300);

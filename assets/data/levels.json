@@ -257,12 +257,12 @@
     "tutorial": "Amno are not unlimited, use them wisely but use them all :)",
     "characters": {
       "citizens": {
-        "sane": 6,
-        "infected": 8
+        "sane": 12,
+        "infected": 2
       },
       "cowboy_with_gun": {
-        "sane": 6,
-        "infected": 4
+        "sane": 8,
+        "infected": 2
       },
       "cowboy_with_shotgun": {
         "sane": 1,
@@ -282,7 +282,7 @@
     ]
   },
   {
-    "tutorial": "Sometimes, it's a lot of work for very few aliens.",
+    "tutorial": "There are less and less aliens there, some citizens talked about a huge tentacle shadow.",
     "characters": {
       "citizens": {
         "sane": 11,
@@ -310,65 +310,31 @@
     ]
   },
   {
-    "tutorial": "Street can be long... super long...",
+    "tutorial": "What the hell, what's this monster, it should be the Alien's Queen!",
     "characters": {
       "citizens": {
-        "sane": 11,
-        "infected": 1
+        "sane": 0,
+        "infected": 0
       },
       "cowboy_with_gun": {
-        "sane": 7,
+        "sane": 0,
         "infected": 0
       },
       "cowboy_with_shotgun": {
-        "sane": 4,
+        "sane": 0,
         "infected": 0
       },
       "cowboy_with_machinegun": {
-        "sane": 2,
+        "sane": 0,
         "infected": 0
       }
     },
     "buildings": [
       "Small",
       "Hostel",
-      "Hostel",
       "Small",
       "Medium",
-      "Hostel",
-      "Hostel",
-      "Medium"
-    ]
-  },
-  {
-    "tutorial": "Street can be long... super long...",
-    "characters": {
-      "citizens": {
-        "sane": 11,
-        "infected": 1
-      },
-      "cowboy_with_gun": {
-        "sane": 7,
-        "infected": 0
-      },
-      "cowboy_with_shotgun": {
-        "sane": 4,
-        "infected": 0
-      },
-      "cowboy_with_machinegun": {
-        "sane": 2,
-        "infected": 0
-      }
-    },
-    "buildings": [
-      "Small",
-      "Hostel",
-      "Hostel",
-      "Small",
-      "Medium",
-      "Hostel",
-      "Hostel",
-      "Medium"
+      "Small"
     ]
   }
 ]

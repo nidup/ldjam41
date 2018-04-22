@@ -1,6 +1,4 @@
 
-import {Config} from "../../Config";
-
 export default class Preload extends Phaser.State
 {
     private skipMenu = false;
@@ -61,6 +59,7 @@ export default class Preload extends Phaser.State
         this.load.spritesheet('BuildingHostel', 'assets/sprites/building-hostel.png', 180, 240);
         this.load.spritesheet('BuildingMedium', 'assets/sprites/building-medium.png', 180, 240);
         this.load.spritesheet('BuildingSmall', 'assets/sprites/building-small.png', 120, 240);
+        this.load.spritesheet('AlienQueen', 'assets/sprites/alien-queen.png', 128, 128);
     }
 
     private loadFonts()

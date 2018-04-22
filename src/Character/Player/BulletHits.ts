@@ -6,6 +6,7 @@ import {Street} from "../../Game/Street";
 import {Cop} from "../Bot/Cop";
 import {Swat} from "../Bot/Swat";
 import {Citizen} from "../Bot/Citizen";
+import {AlienQueen} from "../Bot/AlienQueen";
 
 export class BulletHits
 {
@@ -54,5 +55,15 @@ export class BulletHits
                 }
             }
         );
+
+        if (this.street.alienQueen()) {
+            myGun.bulletHits(
+                this.street.alienQueen(),
+                function(queen: AlienQueen, bullet: Phaser.Bullet) {
+                    queen.hurt(myGun.damage(), new HorizontalDirection(bullet.body));
+                    bullet.kill();
+                }
+            );
+        }
     }
 }

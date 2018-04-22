@@ -4,6 +4,7 @@ import {Citizens} from "../Character/Bot/Citizens";
 import {Hero} from "../Character/Player/Hero";
 import {Swats} from "../Character/Bot/Swats";
 import {CharactersGenerator} from "../Character/CharactersGenerator";
+import {AlienQueen} from "../Character/Bot/AlienQueen";
 
 export class Street
 {
@@ -11,8 +12,9 @@ export class Street
     private swatRepository: Swats;
     private citizenRepository: Citizens;
     private hero: Hero;
+    private queen: AlienQueen;
 
-    constructor(generator: CharactersGenerator)
+    constructor(generator: CharactersGenerator, lastLevel: boolean = false)
     {
         this.copRepository = new Cops();
         this.citizenRepository = new Citizens();
@@ -21,6 +23,9 @@ export class Street
         generator.generateBots(this, this.cops(), this.citizens(), this.swats());
 
         this.hero = generator.generateHero(this);
+        if (lastLevel) {
+            this.queen = generator.generateAlienQueen(this.hero);
+        }
     }
 
     isEmpty(): boolean
@@ -31,6 +36,11 @@ export class Street
     player(): Hero
     {
         return this.hero;
+    }
+
+    alienQueen(): AlienQueen
+    {
+        return this.queen;
     }
 
     cops(): Cops

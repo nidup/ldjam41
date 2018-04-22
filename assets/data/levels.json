@@ -4,9 +4,9 @@
     "characters": {
       "cops_with_gun": 3,
       "cops_with_shotgun": 3,
-      "swats": 0,
+      "swats": 3,
       "citizens": 3,
-      "replicants": 6
+      "replicants": 12
     },
     "buildings": [
       "Small",

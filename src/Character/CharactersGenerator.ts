@@ -91,7 +91,7 @@ export class CharactersGenerator
                 isReplicant = true;
                 nbReplicants--;
             }
-            swats.add(new Swat(this.characterGroup, randX, randY, 'swat', street, isReplicant));
+            swats.add(new Swat(this.characterGroup, randX, randY, 'enemy-machinegun', street, isReplicant));
         }
 
         for (let indCiv = 0; indCiv < this.level.citizens(); indCiv++) {

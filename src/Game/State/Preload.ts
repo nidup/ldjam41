@@ -3,7 +3,7 @@ import {Config} from "../../Config";
 
 export default class Preload extends Phaser.State
 {
-    private skipMenu = false;
+    private skipMenu = true;
     private skipToLevel = 1;
 
     public preload ()

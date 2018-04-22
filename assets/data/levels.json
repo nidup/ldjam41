@@ -2,9 +2,9 @@
   {
     "tutorial": "Aliens are hidden in the population, no way to recognize infected citizens. You have no choice... kill'em all.",
     "characters": {
-      "cops_with_gun": 1,
-      "cops_with_shotgun": 1,
-      "swats": 1,
+      "cops_with_gun": 0,
+      "cops_with_shotgun": 0,
+      "swats": 0,
       "citizens": 6,
       "replicants": 3
     },

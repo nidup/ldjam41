@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 54);
+/******/ 	return __webpack_require__(__webpack_require__.s = 55);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -181,7 +181,7 @@ exports.MachineGunPicked = MachineGunPicked;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const HorizontalDirection_1 = __webpack_require__(9);
+const HorizontalDirection_1 = __webpack_require__(10);
 class CharacterHurt {
     blinkHumanOrReplicant(host, fromDirection, replicant) {
         let tint = 0xb43232;
@@ -217,6 +217,52 @@ exports.CharacterHurt = CharacterHurt;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+const Config_1 = __webpack_require__(0);
+class PickableItem extends Phaser.Sprite {
+    constructor(group, x, y, key, player) {
+        super(group.game, x, y - 10, key, 0);
+        this.picking = false;
+        this.player = player;
+        group.game.physics.enable(this, Phaser.Physics.ARCADE);
+        group.add(this);
+        this.inputEnabled = true;
+        this.scale.setTo(Config_1.Config.pixelScaleRatio(), Config_1.Config.pixelScaleRatio());
+        this.anchor.setTo(0.5, 0.5);
+        this.body.setCircle(9, 7, 8);
+        this.body.allowGravity = false;
+        this.body.collideWorldBounds = true;
+        this.animations.add('blink', [0, 1], 1, true);
+        this.animations.play('blink');
+        const fallAngle = 180;
+        this.angle -= fallAngle;
+        const fallDestinationY = this.y + 30;
+        const fallNewAngle = this.angle + fallAngle;
+        this.game.add.tween(this).to({ y: fallDestinationY, angle: fallNewAngle }, 600, Phaser.Easing.Bounce.Out, true);
+        const pickDestinationY = fallDestinationY - 30;
+        const pickNewAngle = fallNewAngle - 180;
+        this.pickingTween = this.game.add.tween(this).to({ y: pickDestinationY, angle: pickNewAngle }, 100, Phaser.Easing.Bounce.Out);
+        const item = this;
+        this.pickingTween.onComplete.addOnce(function () { player.pick(item); });
+    }
+    update() {
+        this.game.physics.arcade.overlap(this.player, this, function (player, item) {
+            if (!this.picking) {
+                this.picking = true;
+                this.pickingTween.start();
+            }
+        }, null, this);
+    }
+}
+exports.PickableItem = PickableItem;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @see https://gamedevelopment.tutsplus.com/tutorials/finite-state-machines-theory-and-implementation--gamedev-11867
  */
@@ -247,7 +293,7 @@ exports.StackFSM = StackFSM;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -269,7 +315,7 @@ exports.State = State;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -314,7 +360,7 @@ exports.BrainStateMarker = BrainStateMarker;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -345,7 +391,7 @@ exports.Energy = Energy;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -434,7 +480,7 @@ exports.Steering = Steering;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -465,7 +511,7 @@ exports.Vision = Vision;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -482,52 +528,6 @@ class HorizontalDirection {
 HorizontalDirection.LEFT = -1;
 HorizontalDirection.RIGHT = 1;
 exports.HorizontalDirection = HorizontalDirection;
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const Config_1 = __webpack_require__(0);
-class PickableItem extends Phaser.Sprite {
-    constructor(group, x, y, key, player) {
-        super(group.game, x, y - 10, key, 0);
-        this.picking = false;
-        this.player = player;
-        group.game.physics.enable(this, Phaser.Physics.ARCADE);
-        group.add(this);
-        this.inputEnabled = true;
-        this.scale.setTo(Config_1.Config.pixelScaleRatio(), Config_1.Config.pixelScaleRatio());
-        this.anchor.setTo(0.5, 0.5);
-        this.body.setCircle(9, 7, 8);
-        this.body.allowGravity = false;
-        this.body.collideWorldBounds = true;
-        this.animations.add('blink', [0, 1], 1, true);
-        this.animations.play('blink');
-        const fallAngle = 180;
-        this.angle -= fallAngle;
-        const fallDestinationY = this.y + 30;
-        const fallNewAngle = this.angle + fallAngle;
-        this.game.add.tween(this).to({ y: fallDestinationY, angle: fallNewAngle }, 600, Phaser.Easing.Bounce.Out, true);
-        const pickDestinationY = fallDestinationY - 30;
-        const pickNewAngle = fallNewAngle - 180;
-        this.pickingTween = this.game.add.tween(this).to({ y: pickDestinationY, angle: pickNewAngle }, 100, Phaser.Easing.Bounce.Out);
-        const item = this;
-        this.pickingTween.onComplete.addOnce(function () { player.pick(item); });
-    }
-    update() {
-        this.game.physics.arcade.overlap(this.player, this, function (player, item) {
-            if (!this.picking) {
-                this.picking = true;
-                this.pickingTween.start();
-            }
-        }, null, this);
-    }
-}
-exports.PickableItem = PickableItem;
 
 
 /***/ }),
@@ -586,7 +586,7 @@ exports.Hospital = Hospital;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const HorizontalDirection_1 = __webpack_require__(9);
+const HorizontalDirection_1 = __webpack_require__(10);
 class BulletHits {
     constructor(myself, myGun, street) {
         this.shooter = myself;
@@ -1024,10 +1024,10 @@ exports.ShotGun = ShotGun;
 /// <reference path="../lib/phaser.d.ts"/>
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Boot_1 = __webpack_require__(45);
-const Preload_1 = __webpack_require__(48);
-const Menu_1 = __webpack_require__(46);
-const Play_1 = __webpack_require__(47);
+const Boot_1 = __webpack_require__(46);
+const Preload_1 = __webpack_require__(49);
+const Menu_1 = __webpack_require__(47);
+const Play_1 = __webpack_require__(48);
 class SimpleGame extends Phaser.Game {
     constructor() {
         super(1200, 800, Phaser.CANVAS, 'content', null);
@@ -1303,11 +1303,64 @@ exports.Small = Small;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const StackFSM_1 = __webpack_require__(3);
-const State_1 = __webpack_require__(4);
-const Energy_1 = __webpack_require__(6);
-const Steering_1 = __webpack_require__(7);
-const Vision_1 = __webpack_require__(8);
+const Config_1 = __webpack_require__(0);
+const CharacterHurt_1 = __webpack_require__(2);
+class AlienQueen extends Phaser.Sprite {
+    constructor(group, x, y, key) {
+        super(group.game, x, y, key, 0);
+        this.dead = false;
+        group.game.physics.enable(this, Phaser.Physics.ARCADE);
+        group.add(this);
+        this.group = group;
+        this.inputEnabled = true;
+        this.scale.setTo(Config_1.Config.pixelScaleRatio(), Config_1.Config.pixelScaleRatio());
+        this.anchor.setTo(0.5, 0.5);
+        this.body.setCircle(40, 22, 44);
+        this.body.allowGravity = false;
+        this.body.collideWorldBounds = true;
+        this.health = 600;
+        this.animations.add('idle', [0, 1, 2], 1, true);
+        this.animations.add('die', [2, 3, 4], 12, false);
+        this.animations.play('idle');
+    }
+    update() {
+        if (this.health <= 0 && this.isDead() == false) {
+            this.die();
+        }
+    }
+    die() {
+        this.animations.play('die');
+        this.dead = true;
+    }
+    hurt(damage, fromDirection) {
+        const audio = this.game.add.audio('alien-dying', 1, false);
+        audio.play();
+        this.health -= damage;
+        const fx = new CharacterHurt_1.CharacterHurt();
+        fx.blinkHumanOrReplicant(this, fromDirection, false);
+    }
+    isDead() {
+        return this.dead;
+    }
+    isDying() {
+        return this.health <= 0;
+    }
+}
+exports.AlienQueen = AlienQueen;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const StackFSM_1 = __webpack_require__(4);
+const State_1 = __webpack_require__(5);
+const Energy_1 = __webpack_require__(7);
+const Steering_1 = __webpack_require__(8);
+const Vision_1 = __webpack_require__(9);
 class CitizenBrain {
     constructor(citizen, street, group, fearStatus) {
         this.walk = () => {
@@ -1415,17 +1468,17 @@ exports.CitizenBrain = CitizenBrain;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const StackFSM_1 = __webpack_require__(3);
-const State_1 = __webpack_require__(4);
-const Energy_1 = __webpack_require__(6);
-const Steering_1 = __webpack_require__(7);
-const Vision_1 = __webpack_require__(8);
+const StackFSM_1 = __webpack_require__(4);
+const State_1 = __webpack_require__(5);
+const Energy_1 = __webpack_require__(7);
+const Steering_1 = __webpack_require__(8);
+const Vision_1 = __webpack_require__(9);
 class CopBrain {
     constructor(cop, gun, street, group) {
         this.patrol = () => {
@@ -1526,17 +1579,17 @@ exports.CopBrain = CopBrain;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const StackFSM_1 = __webpack_require__(3);
-const State_1 = __webpack_require__(4);
-const Energy_1 = __webpack_require__(6);
-const Steering_1 = __webpack_require__(7);
-const Vision_1 = __webpack_require__(8);
+const StackFSM_1 = __webpack_require__(4);
+const State_1 = __webpack_require__(5);
+const Energy_1 = __webpack_require__(7);
+const Steering_1 = __webpack_require__(8);
+const Vision_1 = __webpack_require__(9);
 class SwatBrain {
     constructor(swat, gun, street, group) {
         this.patrol = () => {
@@ -1637,18 +1690,18 @@ exports.SwatBrain = SwatBrain;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const Config_1 = __webpack_require__(0);
-const CitizenBrain_1 = __webpack_require__(28);
+const CitizenBrain_1 = __webpack_require__(29);
 const CharacterHurt_1 = __webpack_require__(2);
-const FearStatus_1 = __webpack_require__(35);
-const PickableItem_1 = __webpack_require__(10);
-const BrainStateMarker_1 = __webpack_require__(5);
+const FearStatus_1 = __webpack_require__(36);
+const PickableItem_1 = __webpack_require__(3);
+const BrainStateMarker_1 = __webpack_require__(6);
 class Citizen extends Phaser.Sprite {
     constructor(group, x, y, key, street, replicant) {
         super(group.game, x, y, key, 0);
@@ -1730,7 +1783,7 @@ exports.Citizen = Citizen;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1763,20 +1816,20 @@ exports.Citizens = Citizens;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const CopBrain_1 = __webpack_require__(29);
+const CopBrain_1 = __webpack_require__(30);
 const Config_1 = __webpack_require__(0);
 const Gun_1 = __webpack_require__(16);
 const ShotGun_1 = __webpack_require__(18);
 const BulletHits_1 = __webpack_require__(13);
 const CharacterHurt_1 = __webpack_require__(2);
-const PickableItem_1 = __webpack_require__(10);
-const BrainStateMarker_1 = __webpack_require__(5);
+const PickableItem_1 = __webpack_require__(3);
+const BrainStateMarker_1 = __webpack_require__(6);
 class Cop extends Phaser.Sprite {
     constructor(group, x, y, key, street, replicant) {
         super(group.game, x, y, key, 0);
@@ -1867,7 +1920,7 @@ exports.Cop = Cop;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1900,7 +1953,7 @@ exports.Cops = Cops;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1924,19 +1977,19 @@ exports.FearStatus = FearStatus;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const Config_1 = __webpack_require__(0);
-const SwatBrain_1 = __webpack_require__(30);
+const SwatBrain_1 = __webpack_require__(31);
 const MachineGun_1 = __webpack_require__(17);
 const BulletHits_1 = __webpack_require__(13);
 const CharacterHurt_1 = __webpack_require__(2);
-const PickableItem_1 = __webpack_require__(10);
-const BrainStateMarker_1 = __webpack_require__(5);
+const PickableItem_1 = __webpack_require__(3);
+const BrainStateMarker_1 = __webpack_require__(6);
 class Swat extends Phaser.Sprite {
     constructor(group, x, y, key, street, replicant) {
         super(group.game, x, y, key, 0);
@@ -2013,7 +2066,7 @@ exports.Swat = Swat;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2046,16 +2099,18 @@ exports.Swats = Swats;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Hero_1 = __webpack_require__(42);
-const Cop_1 = __webpack_require__(33);
-const Swat_1 = __webpack_require__(36);
-const Citizen_1 = __webpack_require__(31);
+const Hero_1 = __webpack_require__(43);
+const Cop_1 = __webpack_require__(34);
+const Swat_1 = __webpack_require__(37);
+const Citizen_1 = __webpack_require__(32);
+const AlienQueen_1 = __webpack_require__(28);
+const PickableItem_1 = __webpack_require__(3);
 class CharactersGenerator {
     constructor(characterGroup, limits, level, backbag, heroController, heroGunType, heroPosition) {
         this.limits = limits;
@@ -2070,6 +2125,17 @@ class CharactersGenerator {
         const x = (this.heroPosition) ? this.heroPosition.x : this.limits.minX();
         const y = (this.heroPosition) ? this.heroPosition.y : this.limits.maxY();
         return new Hero_1.Hero(this.characterGroup, x, y, 'hero', street, this.backbag, this.controller, this.heroGunType);
+    }
+    generateAlienQueen(hero) {
+        const queenX = 700;
+        const queenY = 620;
+        const firstWeaponX = queenX - 450;
+        const firstWeaponY = queenY - 20;
+        new PickableItem_1.PickableItem(this.characterGroup, firstWeaponX, firstWeaponY, 'MachineGun', hero);
+        new PickableItem_1.PickableItem(this.characterGroup, firstWeaponX, firstWeaponY + 50, 'MachineGun', hero);
+        new PickableItem_1.PickableItem(this.characterGroup, firstWeaponX, firstWeaponY + 100, 'MachineGun', hero);
+        new PickableItem_1.PickableItem(this.characterGroup, firstWeaponX, firstWeaponY + 150, 'MachineGun', hero);
+        return new AlienQueen_1.AlienQueen(this.characterGroup, queenX, queenY, 'AlienQueen');
     }
     generateBots(street, cops, citizens, swats) {
         for (let indCiv = 0; indCiv < this.level.saneCitizens(); indCiv++) {
@@ -2118,7 +2184,7 @@ exports.CharactersGenerator = CharactersGenerator;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2145,7 +2211,7 @@ exports.AggressivenessGauge = AggressivenessGauge;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2175,13 +2241,13 @@ exports.BackBag = BackBag;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const HorizontalDirection_1 = __webpack_require__(9);
+const HorizontalDirection_1 = __webpack_require__(10);
 const Events_1 = __webpack_require__(1);
 class BulletHits {
     constructor(myself, street) {
@@ -2212,13 +2278,19 @@ class BulletHits {
                 hero.pastGameEvents().register(new Events_1.CitizenKilled(hero.game.time.now));
             }
         });
+        if (this.street.alienQueen()) {
+            myGun.bulletHits(this.street.alienQueen(), function (queen, bullet) {
+                queen.hurt(myGun.damage(), new HorizontalDirection_1.HorizontalDirection(bullet.body));
+                bullet.kill();
+            });
+        }
     }
 }
 exports.BulletHits = BulletHits;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2230,9 +2302,9 @@ const Events_1 = __webpack_require__(1);
 const MachineGun_1 = __webpack_require__(17);
 const CharacterHurt_1 = __webpack_require__(2);
 const HeroCamera_1 = __webpack_require__(14);
-const BulletHits_1 = __webpack_require__(41);
+const BulletHits_1 = __webpack_require__(42);
 const Config_1 = __webpack_require__(0);
-const AggressivenessGauge_1 = __webpack_require__(39);
+const AggressivenessGauge_1 = __webpack_require__(40);
 class Hero extends Phaser.Sprite {
     constructor(group, x, y, key, street, backbag, controller, gunIdentifier) {
         super(group.game, x, y, key, 0);
@@ -2498,7 +2570,7 @@ exports.Hero = Hero;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2557,13 +2629,13 @@ exports.Level = Level;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Level_1 = __webpack_require__(43);
+const Level_1 = __webpack_require__(44);
 class LevelLoader {
     load(game, levelNumber) {
         const levelsData = JSON.parse(game.cache.getText('levels'));
@@ -2576,7 +2648,7 @@ exports.LevelLoader = LevelLoader;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2604,7 +2676,7 @@ exports.default = Boot;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2630,11 +2702,11 @@ class Menu extends Phaser.State {
         this.game.add.bitmapText(titleX, titleY, 'cowboy', 'Cowboys vs Aliens', largeFontSize);
         const storyX = titleX - 150;
         const storyY = titleY + 150;
-        const storyText = "Hey Rick,\n\n"
+        const storyText = "Hey Rick MacMorty,\n\n"
             + "Aliens are infesting citizens in our town, you\n"
             + "can't distinguish who is sane or contaminated.\n"
             + "You have only one option... kill them all to stop\n"
-            + "this plague.\n";
+            + "this plague and save the far west.\n";
         this.game.add.bitmapText(storyX, storyY, 'cowboy', storyText, mediumFontSize);
         const controlsChoiceX = storyX;
         const controlsChoiceY = storyY + 350;
@@ -2693,24 +2765,24 @@ exports.default = Menu;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Street_1 = __webpack_require__(49);
-const Inventory_1 = __webpack_require__(52);
-const BackBag_1 = __webpack_require__(40);
-const LevelInstructions_1 = __webpack_require__(53);
-const FlashMessages_1 = __webpack_require__(51);
+const Street_1 = __webpack_require__(50);
+const Inventory_1 = __webpack_require__(53);
+const BackBag_1 = __webpack_require__(41);
+const LevelInstructions_1 = __webpack_require__(54);
+const FlashMessages_1 = __webpack_require__(52);
 const BuildingLayout_1 = __webpack_require__(21);
 const Config_1 = __webpack_require__(0);
-const LevelLoader_1 = __webpack_require__(44);
+const LevelLoader_1 = __webpack_require__(45);
 const Controller_1 = __webpack_require__(15);
 const DeviceDetector_1 = __webpack_require__(11);
-const StreetLimits_1 = __webpack_require__(50);
-const CharactersGenerator_1 = __webpack_require__(38);
+const StreetLimits_1 = __webpack_require__(51);
+const CharactersGenerator_1 = __webpack_require__(39);
 const Events_1 = __webpack_require__(1);
 class Play extends Phaser.State {
     constructor() {
@@ -2719,6 +2791,7 @@ class Play extends Phaser.State {
         this.switchingLevel = false;
         this.previousInventory = null;
         this.controllerType = null;
+        this.isFinalLevel = false;
     }
     init(controllerType, level = 1, previousInventory = { 'gunAmno': 100, 'shotgunAmno': 0, 'machinegunAmno': 0, 'money': 0 }, currentGunType = 'Gun', playerPosition = null) {
         this.levelNumber = level;
@@ -2727,6 +2800,9 @@ class Play extends Phaser.State {
         this.controllerType = controllerType;
         this.previousGunType = currentGunType;
         this.playerPosition = playerPosition;
+        if (level == 12) {
+            this.isFinalLevel = true;
+        }
     }
     create() {
         if (Config_1.Config.debug()) {
@@ -2804,7 +2880,7 @@ class Play extends Phaser.State {
         const backbag = new BackBag_1.BackBag(this.previousInventory);
         const limits = new StreetLimits_1.StreetLimits(streetPositionX, streetWidth);
         const generator = new CharactersGenerator_1.CharactersGenerator(this.characterLayer, limits, level, backbag, controller, this.previousGunType, this.playerPosition);
-        this.street = new Street_1.Street(generator);
+        this.street = new Street_1.Street(generator, this.isFinalLevel);
         this.buildings = layout.buildings();
         new LevelInstructions_1.LevelInstructions(interfaceLayer, streetPositionX, 0, 'LevelInstructions', level);
         new Inventory_1.Inventory(interfaceLayer, streetPositionX + 600, 0, 'Inventory', this.street.player());
@@ -2816,8 +2892,20 @@ class Play extends Phaser.State {
         this.game.camera.follow(this.street.player());
     }
     update() {
-        if (this.street.isEmpty()) {
-            this.nextLevel();
+        if (this.isFinalLevel) {
+            if (this.street.alienQueen().isDead()) {
+                const levelText = this.game.add.bitmapText(100, 300, 'cowboy', 'Congratz, you defeat the aliens!', 30);
+                levelText.alpha = 1;
+                const tweenAlpha = this.game.add.tween(levelText).to({ alpha: 0 }, 0, "Linear", true);
+                this.game.time.events.add(Phaser.Timer.SECOND * 10, function () {
+                    this.nextLevel();
+                }, this);
+            }
+        }
+        else {
+            if (this.street.isEmpty()) {
+                this.nextLevel();
+            }
         }
         this.game.physics.arcade.collide(this.topBoundMargin, this.street.player());
         this.game.physics.arcade.collide(this.topBoundMargin, this.street.citizens().all());
@@ -2852,7 +2940,7 @@ class Play extends Phaser.State {
             }
             else {
                 this.game.time.events.add(Phaser.Timer.SECOND * 4, function () {
-                    this.game.state.start('Play', true, false, this.controllerType, this.levelNumber);
+                    this.game.state.start('Play', true, false, this.controllerType, this.levelNumber, this.buildInventory(), this.street.player().equippedGun().identifier());
                 }, this);
             }
         }
@@ -2863,6 +2951,7 @@ class Play extends Phaser.State {
             this.game.debug.body(this.street.player());
             this.game.debug.cameraInfo(this.game.camera, 32, 32);
             this.game.debug.spriteInfo(this.street.player(), 32, 200);
+            //this.game.debug.body(this.alienQueen);
             //this.game.debug.body(this.street.citizens().all()[0]);
             //this.game.debug.spriteInfo(this.street.citizens().all()[0], 32, 300);
             //this.game.debug.bodyInfo(this.street.citizens().all()[0], 32, 300);
@@ -2905,7 +2994,7 @@ exports.default = Play;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2965,6 +3054,7 @@ class Preload extends Phaser.State {
         this.load.spritesheet('BuildingHostel', 'assets/sprites/building-hostel.png', 180, 240);
         this.load.spritesheet('BuildingMedium', 'assets/sprites/building-medium.png', 180, 240);
         this.load.spritesheet('BuildingSmall', 'assets/sprites/building-small.png', 120, 240);
+        this.load.spritesheet('AlienQueen', 'assets/sprites/alien-queen.png', 128, 128);
     }
     loadFonts() {
         this.load.bitmapFont('carrier-command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
@@ -2975,28 +3065,34 @@ exports.default = Preload;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Cops_1 = __webpack_require__(34);
-const Citizens_1 = __webpack_require__(32);
-const Swats_1 = __webpack_require__(37);
+const Cops_1 = __webpack_require__(35);
+const Citizens_1 = __webpack_require__(33);
+const Swats_1 = __webpack_require__(38);
 class Street {
-    constructor(generator) {
+    constructor(generator, lastLevel = false) {
         this.copRepository = new Cops_1.Cops();
         this.citizenRepository = new Citizens_1.Citizens();
         this.swatRepository = new Swats_1.Swats();
         generator.generateBots(this, this.cops(), this.citizens(), this.swats());
         this.hero = generator.generateHero(this);
+        if (lastLevel) {
+            this.queen = generator.generateAlienQueen(this.hero);
+        }
     }
     isEmpty() {
         return this.cops().allAlive().length === 0 && this.citizens().allAlive().length === 0 && this.swats().allAlive().length === 0;
     }
     player() {
         return this.hero;
+    }
+    alienQueen() {
+        return this.queen;
     }
     cops() {
         return this.copRepository;
@@ -3012,7 +3108,7 @@ exports.Street = Street;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3040,7 +3136,7 @@ exports.StreetLimits = StreetLimits;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3153,7 +3249,7 @@ class Message {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3291,7 +3387,7 @@ exports.Inventory = Inventory;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3339,13 +3435,16 @@ class LevelInstructions extends Phaser.Sprite {
         });
         const tutorialText = this.game.add.bitmapText(this.x + 45, 45, 'cowboy', formattedText, fontTutorialSize);
         tutorialText.fixedToCamera = true;
+        const levelText = this.game.add.bitmapText(400, 300, 'cowboy', 'Day ' + levelToDaysNumber[level.number()], 40);
+        levelText.alpha = 1;
+        const tweenAlpha = this.game.add.tween(levelText).to({ alpha: 0 }, 0, "Linear", true);
     }
 }
 exports.LevelInstructions = LevelInstructions;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(19);

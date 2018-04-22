@@ -4,17 +4,17 @@ Small side scrolling shoot'em up game 🔫
 
 Built in compo mode, in 48h for the [Ludum Dare 41](https://ldjam.com/events/ludum-dare/41), the theme is "Combine 2 Incompatible Genres".
 
-Everything is hand-crafted, from source code to assets.
+Everything is hand-crafted, from source code to assets 💪
 
 # Demo
 
-[Here is an online demo, be patient, it downloads the whole internet ⏰](https://nidup.github.io/ldjam41/)
+[Here is an online playable demo 🎮](https://nidup.github.io/ldjam41/)
 
 <p align="center">
 <img src="https://github.com/nidup/ldjam41/blob/master/assets/doc/ldjam41.png" alt="LD JAM 41"/>
 </p>
 
-# Getting Started to Dev
+# Development
 
 ## Run the dev image
 
@@ -46,7 +46,7 @@ You can access your project in your browser,
 http://localhost:8080/
 ```
 
-# Deploy the demo
+# Deployment
 
 ## Build the bundle.js
 

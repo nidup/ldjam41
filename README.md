@@ -11,7 +11,7 @@ Everything is hand-crafted, from source code to assets:
 
 # Demo
 
-[Here is an online playable demo 🎮](https://nidup.github.io/ldjam41/)
+[Here is an online playable demo on Itch.io 🎮](https://nidup.itch.io/cowboys-vs-aliens)
 
 <p align="center">
 <img src="https://github.com/nidup/ldjam41/blob/master/assets/doc/ldjam41.png" alt="LD JAM 41"/>

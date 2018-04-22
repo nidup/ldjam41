@@ -37,11 +37,7 @@ export default class Preload extends Phaser.State
         this.load.text('levels', 'assets/data/levels.json');
     }
 
-    private loadGameImages()
-    {
-        this.load.spritesheet('ControllerIndicator', 'assets/controllers/controller-indicator.png', 16,16);
-        this.load.atlas('xbox360', 'assets/controllers/xbox360.png', 'assets/controllers/xbox360.json');
-
+    private loadGameImages() {
         this.load.spritesheet('Top', 'assets/sprites/top.png', 1, 1);
         this.load.spritesheet('Side', 'assets/sprites/side.png', 12, 12);
         this.load.spritesheet('sky', 'assets/sprites/sky.png', 800, 600);
@@ -62,12 +58,9 @@ export default class Preload extends Phaser.State
         this.load.spritesheet('Menu', 'assets/sprites/menu.png', 800, 600);
         this.load.spritesheet('Street', 'assets/sprites/street.png', 80, 110);
         this.load.spritesheet('BuildingHostel', 'assets/sprites/building-hostel.png', 180, 240);
-        this.load.spritesheet('BuildingElectricSheep', 'assets/sprites/building-electric-sheep.png', 180, 240);
-        this.load.spritesheet('BuildingBig', 'assets/sprites/building-big.png', 240, 240);
         this.load.spritesheet('BuildingMedium', 'assets/sprites/building-medium.png', 180, 240);
         this.load.spritesheet('BuildingSmall', 'assets/sprites/building-small.png', 120, 240);
-        this.load.spritesheet('BuildingPub', 'assets/sprites/building-pub.png', 120, 240);
-        this.load.spritesheet('BuildingHospital', 'assets/sprites/building-hospital.png', 180, 240);}
+    }
 
     private loadFonts()
     {

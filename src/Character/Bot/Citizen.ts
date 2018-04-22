@@ -62,6 +62,14 @@ export class Citizen extends Phaser.Sprite implements CanBeHurt, CouldBeAReplica
 
     die()
     {
+        if (this.isReplicant) {
+            const audio = this.game.add.audio('alien-dying', 1, false);
+            audio.play();
+        } else {
+            const audio = this.game.add.audio('human-dying', 0.5, false);
+            audio.play();
+        }
+
         this.animations.play('die');
         let randMoney = this.group.game.rnd.integerInRange(1, 3);
         if (randMoney === 1) {

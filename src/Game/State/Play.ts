@@ -32,7 +32,6 @@ export default class Play extends Phaser.State
     private leftBoundMargin: Phaser.TileSprite;
     private rightBoundMargin: Phaser.TileSprite;
     private topBoundMargin: Phaser.TileSprite;
-    private music: Phaser.Sound;
 
     public init (
         controllerType: string,
@@ -164,10 +163,6 @@ export default class Play extends Phaser.State
         this.game.world.setBounds(worldBoundX, worldBoundY, worldWidth, worldHeight);
 
         this.game.camera.follow(this.street.player());
-        if (this.levelNumber == 1) {
-            this.music = this.game.add.audio('far-west');
-            this.music.loopFull();
-        }
     }
 
     public update()

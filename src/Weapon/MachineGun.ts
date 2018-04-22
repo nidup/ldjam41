@@ -25,6 +25,10 @@ export class MachineGun implements BaseGun
             },
             this
         );
+        this.weapon.onFire.add(function(){
+            const shootAudio = this.game.add.audio('shoot', 0.5, false);
+            shootAudio.play();
+        }, this);
     }
 
     fire()

@@ -17,11 +17,7 @@ export default class Preload extends Phaser.State
     public create ()
     {
         if (this.skipMenu) {
-            if (Config.fakingMobileForDebug()) {
-                this.game.state.start('Play', true, false, 'virtualpad', this.skipToLevel);
-            } else {
-                this.game.state.start('Play', true, false, 'keyboard', this.skipToLevel);
-            }
+            this.game.state.start('Play', true, false, 'keyboard', this.skipToLevel);
         } else {
             this.game.state.start('Menu');
         }
@@ -29,7 +25,12 @@ export default class Preload extends Phaser.State
 
     private loadAudio()
     {
-        this.load.audio('far-west', 'assets/sounds/far-west.ogg');
+        this.load.audio('far-west', 'assets/sounds/far-west2.ogg');
+        this.load.audio('shoot', 'assets/sounds/single-shoot.ogg');
+        this.load.audio('pick-money', 'assets/sounds/pick-money.ogg');
+        this.load.audio('pick-weapon', 'assets/sounds/pick-weapon.ogg');
+        this.load.audio('alien-dying', 'assets/sounds/alien-dying.ogg');
+        this.load.audio('human-dying', 'assets/sounds/human-dying.ogg');
     }
 
     private loadLevels()
